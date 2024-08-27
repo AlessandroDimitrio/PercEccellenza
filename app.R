@@ -7,6 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
+
 library(shiny)
 library(shinydashboard)
 library(TCGAbiolinks)
@@ -19,17 +20,15 @@ library(DESeq2)
 library(EnhancedVolcano)
 library(DT)
 library(shinyjs)
-library(rsconnect)
 
 # merged_data, stratified_data, etc. should be available in the global environment
-
-rsconnect::setAccountInfo(name='alessandrodimitrio', token='4C36F3DBB8A19F307B475D9282AA4198', secret='Tp7poRY7jF/IZ/w+5gZ6e83UUjXctyz8KY8gvKM6')
 
 merged_data <- readRDS("data/merged_data.rds")
 stratified_data <- readRDS("data/stratified_data.rds")
 
 # UI
 ui <- dashboardPage(
+  title = "Percorso di Eccellenza",
   skin = "purple",
   dashboardHeader(
     title = div(h3('Percorso di Eccellenza', style="margin: 0; margin-top: 10px; font-size: 12px; font-weight: bold;"), h3('Alessandro Dimitrio', style="margin: 0;font-size: 12px;"))
@@ -45,7 +44,8 @@ ui <- dashboardPage(
   dashboardBody(
     useShinyjs(),
     tags$head(
-      tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
+      tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
+      tags$head(tags$link(rel="shortcut icon", href="favicon.ico"))
     ),
     tabItems(
       
